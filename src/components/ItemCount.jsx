@@ -1,30 +1,51 @@
 import React from 'react'
 import { useState } from 'react'
+import ItemListContainer from './ItemListContainer/ItemListContainer';
 
-function ItemCount  ({stock , initial , onAdd}) {
-    
-    const [clicks, setClicks] = useState(1) 
+const ItemCount  = ({stock , initial , onAdd}) => {
+
+    const initialClick = initial || 1;
+    const [clicks , setClicks] = useState(initialClick)
 
     const sumarClick = () => {
         if (clicks < stock) {
             setClicks(clicks + 1)
+            console.log(clicks)
         }
     }
+    
     const restarClick = () => {
-        if (clicks > initial) {
+        if (clicks > 0) {
             setClicks(clicks - 1)
+            console.log(clicks)
         }
     }
+    
     return (
         <>
-        <ItemCount />
         <h2>Cantidad</h2>
         <h3>{clicks}</h3>
         <div>
-            <button onClick={restarClick}>-</button>
-            <button onClick={sumarClick}>+</button>
+            <button className="btn btn-dark"
+                onClick={restarClick} 
+                disabled={clicks === 0}
+                >
+                    -
+            </button>
+
+            <button className="btn btn-dark"
+                onClick={sumarClick} 
+                disabled={clicks === 5}
+                >
+                    +
+            </button>
+
         </div>
-        <button>Agregar al carrito</button>
+        <button className="btn btn-success"
+        onClick={() => onAdd(clicks)}
+        >
+            Agregar al carrito
+        </button>
 
         
         </>
@@ -32,3 +53,4 @@ function ItemCount  ({stock , initial , onAdd}) {
 }
 
 export default ItemCount;
+// exportado en ItemListContainer
