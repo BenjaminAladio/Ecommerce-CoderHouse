@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 export const Item = ({id, name, img, desc, price}) => {
     return (
@@ -9,7 +11,7 @@ export const Item = ({id, name, img, desc, price}) => {
                     <h2 className="card-title">${price}</h2>
                     {/* <p className="card-text">Precio: ${price}</p> */}
                     <p className="card-text">{desc}</p>
-                    <button className="btn btn-dark">Detalle</button>
+                    <Link to={`/detail/${id}`} className="btn btn-dark">Detalle</Link>
                 </div>
             </div>
         </div>

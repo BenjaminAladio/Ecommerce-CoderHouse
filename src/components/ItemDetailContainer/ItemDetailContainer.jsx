@@ -1,30 +1,37 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { pedirDatos } from '../../helpers/pedirDatos'
+import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
 
 
 const ItemDetailContainer = () => {
     
-    const API_URL = 'https://localhost:3000/stock/item'
-    const [item, setItem] = useState(false)
+    const [item, setItem] = useState()
     const [loading, setLoading] = useState(false)
 
+
+    const { itemId } = useParams()
+
     useEffect(() => {
+
         setLoading(true)
-        fetch(API_URL)
-            .then(response => response.json())
-            .then(data => {
-                setItem(data)
+       
+        pedirDatos()
+            .then(resp => {
+                setItem(resp.find(prod => prod.id === Number(itemId) ) )
+            })
+            .finally(() => {
                 setLoading(false)
-                console.log(data)
             })
     }, []) 
 
     return (
-            <div>
+            <div className="container my-5">
                 {
                     loading 
                     ? <div>Cargando...</div>
-                    : <ItemDetail item={item} />
+                    : <ItemDetail {...item} />
                 }
             </div>
             )
