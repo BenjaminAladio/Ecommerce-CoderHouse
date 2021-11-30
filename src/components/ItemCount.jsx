@@ -1,48 +1,42 @@
 import React from 'react'
-import { useState } from 'react'
-import ItemListContainer from './ItemListContainer/ItemListContainer';
 
-const ItemCount  = ({stock , initial , onAdd}) => {
 
-    const initialClick = initial || 1;
-    const [clicks , setClicks] = useState(initialClick)
+const ItemCount  = ({max, setCantidad, cantidad}) => {
 
-    const sumarClick = () => {
-        if (clicks < stock) {
-            setClicks(clicks + 1)
-            console.log(clicks)
+   
+
+    const sumarCant = () => {
+        if(cantidad < max){
+            setCantidad(cantidad + 1)
+            console.log(sumarCant)
         }
     }
     
-    const restarClick = () => {
-        if (clicks > 0) {
-            setClicks(clicks - 1)
-            console.log(clicks)
+    const restarCant = () => {
+        if(cantidad > 0){
+            setCantidad(cantidad - 1)
         }
     }
     
     return (
         <>
         <h2>Cantidad</h2>
-        <h3>{clicks}</h3>
+        <h3>{cantidad}</h3>
         <div>
             <button className="btn btn-dark"
-                onClick={restarClick} 
-                disabled={clicks === 0}
-                >
+                onClick={restarCant} 
+                disabled={cantidad === 0}>
                     -
             </button>
 
             <button className="btn btn-dark"
-                onClick={sumarClick} 
-                disabled={clicks === 5}
-                >
+                onClick={sumarCant} 
+                disabled={cantidad === 5}>
                     +
             </button>
 
         </div>
         <button className="btn btn-success"
-        onClick={() => onAdd(clicks)}
         >
             Agregar al carrito
         </button>

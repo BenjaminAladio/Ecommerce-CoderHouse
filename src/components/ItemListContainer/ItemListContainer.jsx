@@ -3,6 +3,7 @@ import ItemCount from '../ItemCount'
 import { useState } from 'react'
 import { pedirDatos }  from '../../helpers/pedirDatos'
 import { ItemList } from '../ItemList/ItemList'
+import { Carrusel } from '../Carrusel/Carrusel'
 
 
 
@@ -34,6 +35,7 @@ const ItemListContainer = ({greeting}) => {
             loading ?
             <h2>Cargando...</h2>
             : <ItemList items={productos} />
+            
 
             
         }
