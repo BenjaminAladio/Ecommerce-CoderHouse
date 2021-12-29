@@ -1,21 +1,19 @@
 import React from 'react'
 
 
-const ItemCount  = ({max, setCantidad, cantidad}) => {
+const ItemCount  = ({max, setCantidad, cantidad, onAdd}) => {
 
    
 
     const sumarCant = () => {
-        if(cantidad < max){
-            setCantidad(cantidad + 1)
-            console.log(sumarCant)
-        }
+        cantidad < max && setCantidad (cantidad + 1)
+        
     }
-    
+
+
     const restarCant = () => {
-        if(cantidad > 0){
-            setCantidad(cantidad - 1)
-        }
+        cantidad > 0 && setCantidad (cantidad - 1)
+        
     }
     
     return (
@@ -23,20 +21,26 @@ const ItemCount  = ({max, setCantidad, cantidad}) => {
         <h2>Cantidad</h2>
         <h3>{cantidad}</h3>
         <div>
-            <button className="btn btn-dark"
-                onClick={restarCant} 
-                disabled={cantidad === 0}>
-                    -
+            <button 
+            onClick= {restarCant}
+            className="btn btn-dark"
+            disabled={cantidad === 0}>
+                - 
             </button>
+                
+                   
 
-            <button className="btn btn-dark"
-                onClick={sumarCant} 
-                disabled={cantidad === 5}>
-                    +
+            <button onClick={sumarCant} 
+            className="btn btn-dark"
+            disabled={cantidad === max}>
+                +
             </button>
+                 
 
         </div>
         <button className="btn btn-success"
+            onClick={onAdd}
+            disabled={cantidad === 0}
         >
             Agregar al carrito
         </button>
@@ -47,4 +51,3 @@ const ItemCount  = ({max, setCantidad, cantidad}) => {
 }
 
 export default ItemCount;
-// exportado en ItemListContainer

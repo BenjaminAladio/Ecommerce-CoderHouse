@@ -3,7 +3,7 @@ import {Carousel} from 'react-bootstrap'
 
 export const Carrusel = () => {
     return (
-        <div>
+        
             <Carousel>
   <Carousel.Item>
     <img
@@ -32,6 +32,6 @@ export const Carrusel = () => {
    
   </Carousel.Item>
 </Carousel>
-        </div>
+        
     )
 }

@@ -8,7 +8,7 @@ export const ItemList = ({items}) => {
 
     return (
         <Container className="my-3">
-            <h2><Carrusel /></h2>
+            <Carrusel />
             <Row>
                 {items.map((prod) => <Item key={prod.id} {...prod} />)}
             </Row>
